@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { cardTitle } from '../lib/dramas';
 import { IconPlay, IconStar, IconEye } from './icons';
+import MyListButton from './MyListButton';
 
 export function portraitUrl(drama) {
   return drama.poster.replace('/640/360', '/500/750');
@@ -24,6 +25,7 @@ export default function DramaCard({ drama }) {
         : `EP ${drama.addedEpisodes} ADD`;
 
   return (
+    <div className="card-wrap">
     <Link href={`/drama/${drama.slug}`} className="card">
       <div className="card-poster">
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -48,5 +50,7 @@ export default function DramaCard({ drama }) {
         </p>
       </div>
     </Link>
+    <MyListButton slug={drama.slug} />
+    </div>
   );
 }

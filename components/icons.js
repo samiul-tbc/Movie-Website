@@ -251,3 +251,23 @@ export function IconLayers({ size = 24, className }) {
     </Svg>
   );
 }
+
+export function IconBookmark({ size = 24, className, filled = false }) {
+  return (
+    <Svg size={size} className={className} filled={filled}>
+      <path d="M19 21l-7-4.6L5 21V5.5A2.5 2.5 0 0 1 7.5 3h9A2.5 2.5 0 0 1 19 5.5Z" />
+    </Svg>
+  );
+}
+
+export function IconTrash({ size = 24, className }) {
+  return (
+    <Svg size={size} className={className}>
+      <path d="M3.5 6h17" />
+      <path d="M8 6V4a1.5 1.5 0 0 1 1.5-1.5h5A1.5 1.5 0 0 1 16 4v2" />
+      <path d="M19 6l-1 14a2 2 0 0 1-2 1.8H8A2 2 0 0 1 6 20L5 6" />
+      <path d="M10 11v6" />
+      <path d="M14 11v6" />
+    </Svg>
+  );
+}

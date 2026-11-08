@@ -2,6 +2,7 @@ import Link from 'next/link';
 import HeroSlider from '../components/HeroSlider';
 import RowScroller from '../components/RowScroller';
 import DramaCard from '../components/DramaCard';
+import ContinueWatching from '../components/ContinueWatching';
 import { dramas, categories, getDramasByCategory } from '../lib/dramas';
 import { IconFlame, IconSparkles, IconLayers } from '../components/icons';
 
@@ -47,6 +48,8 @@ export default function HomePage() {
             </div>
           ))}
         </RowScroller>
+
+        <ContinueWatching />
 
         <RowScroller
           title={<><IconSparkles size={21} className="row-title-icon" /> Latest Added</>}

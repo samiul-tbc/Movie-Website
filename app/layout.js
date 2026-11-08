@@ -2,6 +2,8 @@ import Link from 'next/link';
 import './globals.css';
 import TelegramPopup from '../components/TelegramPopup';
 import BottomNav from '../components/BottomNav';
+import LogoMark from '../components/Logo';
+import ServiceWorkerRegister from '../components/ServiceWorkerRegister';
 import { IconSearch, IconSend, IconArrowRight } from '../components/icons';
 
 export const metadata = {
@@ -11,6 +13,11 @@ export const metadata = {
   },
   description:
     'Watch Korean dramas, Chinese dramas and Anime in Hindi Dubbed. Episode-wise updates in 720p HD and 1080p Full HD.',
+  manifest: '/manifest.json',
+};
+
+export const viewport = {
+  themeColor: '#07090f',
 };
 
 export default function RootLayout({ children }) {
@@ -20,7 +27,7 @@ export default function RootLayout({ children }) {
         <header className="header">
           <div className="header-inner">
             <Link href="/" className="logo">
-              <span className="logo-dot" aria-hidden="true" />
+              <LogoMark size={36} />
               HubCart <span>Movie</span>
             </Link>
             <nav className="nav">
@@ -29,6 +36,8 @@ export default function RootLayout({ children }) {
               <Link href="/category/chinese">Chinese</Link>
               <Link href="/category/anime">Anime</Link>
               <Link href="/category/movies">Movies</Link>
+              <Link href="/my-list">My List</Link>
+              <Link href="/request">Request</Link>
             </nav>
             <Link href="/search" className="search-link" aria-label="Search">
               <IconSearch size={16} /> Search
@@ -75,7 +84,7 @@ export default function RootLayout({ children }) {
             <div className="footer-grid">
               <div>
                 <p className="footer-brand">
-                  <span className="logo-dot" aria-hidden="true" />
+                  <LogoMark size={30} />
                   HubCart <span>Movie</span>
                 </p>
                 <p className="footer-tag">
@@ -97,6 +106,8 @@ export default function RootLayout({ children }) {
                 <div className="footer-col">
                   <Link href="/">Home</Link>
                   <Link href="/search">Search</Link>
+                  <Link href="/my-list">My List</Link>
+                  <Link href="/request">Request a Drama</Link>
                   <a
                     href="https://t.me/Rdx_kdrama_hindi"
                     target="_blank"
@@ -121,6 +132,7 @@ export default function RootLayout({ children }) {
 
         <BottomNav />
         <TelegramPopup />
+        <ServiceWorkerRegister />
       </body>
     </html>
   );

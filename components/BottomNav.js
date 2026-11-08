@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { IconHome, IconSearch, IconGrid, IconSend } from './icons';
+import { IconHome, IconSearch, IconGrid, IconSend, IconBookmark } from './icons';
 import { useLiquidPill } from './useLiquid';
 
 const TELEGRAM_URL = 'https://t.me/Rdx_kdrama_hindi';
@@ -15,6 +15,12 @@ const ITEMS = [
     label: 'Search',
     Icon: IconSearch,
     match: (p) => p.startsWith('/search'),
+  },
+  {
+    href: '/my-list',
+    label: 'My List',
+    Icon: IconBookmark,
+    match: (p) => p.startsWith('/my-list'),
   },
   {
     href: '/#categories',

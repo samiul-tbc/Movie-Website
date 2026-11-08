@@ -4,6 +4,7 @@ import { dramas, getDrama, getDramasByCategory, cardTitle } from '../../../lib/d
 import DramaCard, { portraitUrl, formatViews } from '../../../components/DramaCard';
 import RowScroller from '../../../components/RowScroller';
 import EpisodeSwitcher from '../../../components/EpisodeSwitcher';
+import MyListButton from '../../../components/MyListButton';
 import {
   IconPlay,
   IconStar,
@@ -105,6 +106,7 @@ export default function DramaPage({ params }) {
               <a href="#episodes" className="btn-watch">
                 <IconPlay size={17} /> Watch Now
               </a>
+              <MyListButton slug={drama.slug} variant="labelled" />
               <a
                 href="https://t.me/Rdx_kdrama_hindi"
                 target="_blank"
@@ -137,7 +139,7 @@ export default function DramaPage({ params }) {
         </section>
 
         <div id="episodes">
-          <EpisodeSwitcher episodes={drama.episodes} />
+          <EpisodeSwitcher episodes={drama.episodes} slug={drama.slug} />
         </div>
 
         <section className="section-block">

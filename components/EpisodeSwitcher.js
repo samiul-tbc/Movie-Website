@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { IconPlay, IconDownload } from './icons';
 import { useLiquidPill } from './useLiquid';
 
@@ -12,10 +13,10 @@ const QUALITIES = [
 // Episodes for ONE drama, with a liquid segmented switch for quality.
 // The track is glass; a measured lime pill (blue in 1080p mode) springs
 // between the two segments, and the episode grid below re-animates with a
-// staggered fade/slide every time the quality changes. Links come straight
-// from the drama's episode data: ep.watch720 / ep.download720 /
-// ep.watch1080 / ep.download1080.
-export default function EpisodeSwitcher({ episodes }) {
+// staggered fade/slide every time the quality changes. Watch buttons open
+// the Watch page (player) in the selected quality; Download buttons use
+// the episode's download link straight from the drama data.
+export default function EpisodeSwitcher({ episodes, slug }) {
   const [quality, setQuality] = useState('720');
   const activeIndex = quality === '720' ? 0 : 1;
   const { containerRef, setItemRef, pillStyle, moving } = useLiquidPill(activeIndex);
@@ -69,9 +70,9 @@ export default function EpisodeSwitcher({ episodes }) {
           >
             <span className="ep-pill">EP {ep.number}</span>
             <div className="ep-links">
-              <a className="btn" href={is720 ? ep.watch720 : ep.watch1080}>
+              <Link className="btn" href={`/watch/${slug}/${ep.number}?q=${quality}`}>
                 <IconPlay size={13} /> Watch
-              </a>
+              </Link>
               <a className="btn alt" href={is720 ? ep.download720 : ep.download1080}>
                 <IconDownload size={13} /> Download
               </a>
@@ -81,7 +82,8 @@ export default function EpisodeSwitcher({ episodes }) {
       </div>
 
       <p className="ep-note">
-        Links are placeholders in this demo — replace them in{' '}
+        Watch opens the player page. Stream links are placeholders in this
+        demo — replace them in{' '}
         <code>lib/dramas.js</code> with links for content you have the rights
         to share.
       </p>

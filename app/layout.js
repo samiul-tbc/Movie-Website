@@ -42,6 +42,16 @@ export default function RootLayout({ children }) {
             <Link href="/search" className="search-link" aria-label="Search">
               <IconSearch size={16} /> Search
             </Link>
+            <a
+              href="https://t.me/Rdx_kdrama_hindi"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="tg-join-btn"
+              aria-label="Join our Telegram channel"
+            >
+              <IconSend size={16} />
+              <span className="tg-join-text">Join Telegram</span>
+            </a>
           </div>
         </header>
 

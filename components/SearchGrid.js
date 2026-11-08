@@ -2,6 +2,41 @@
 
 import { useMemo, useState } from 'react';
 import DramaCard from './DramaCard';
+import { useLiquidPill } from './useLiquid';
+
+// One row of filter chips with the liquid-glass treatment: a measured pill
+// slides behind the active chip (spring transition + stretch), the chips
+// themselves are transparent buttons sitting above it.
+function ChipRow({ options, value, onChange, small = false }) {
+  const activeIndex = options.findIndex((o) => o.value === value);
+  const { containerRef, setItemRef, pillStyle, moving } = useLiquidPill(activeIndex);
+
+  return (
+    <div className="chips liquid-chips" ref={containerRef}>
+      <span
+        className={moving ? 'chip-pill moving' : 'chip-pill'}
+        style={pillStyle}
+        aria-hidden="true"
+      >
+        <span className="chip-pill-inner" />
+      </span>
+      {options.map((o, i) => (
+        <button
+          key={o.value}
+          ref={setItemRef(i)}
+          className={
+            (small ? 'chip chip-sm' : 'chip') +
+            (o.value === value ? ' active' : '')
+          }
+          onClick={() => onChange(o.value)}
+          aria-pressed={o.value === value}
+        >
+          {o.label}
+        </button>
+      ))}
+    </div>
+  );
+}
 
 export default function SearchGrid({ dramas, categories, initialQuery = '' }) {
   const [query, setQuery] = useState(initialQuery);
@@ -25,6 +60,17 @@ export default function SearchGrid({ dramas, categories, initialQuery = '' }) {
     });
   }, [dramas, query, activeCat, activeLang]);
 
+  const catOptions = [
+    { value: 'all', label: 'All' },
+    ...categories.map((c) => ({ value: c.slug, label: c.name })),
+  ];
+  const langOptions = [
+    { value: 'all', label: 'All Languages' },
+    { value: 'hindi', label: 'Hindi Dubbed' },
+    { value: 'english dubbed', label: 'English Dubbed' },
+    { value: 'subtitle', label: 'Subtitle Only' },
+  ];
+
   return (
     <section>
       <div className="hero">
@@ -41,40 +87,13 @@ export default function SearchGrid({ dramas, categories, initialQuery = '' }) {
         </div>
       </div>
 
-      <div className="chips">
-        <button
-          className={activeCat === 'all' ? 'chip active' : 'chip'}
-          onClick={() => setActiveCat('all')}
-        >
-          All
-        </button>
-        {categories.map((c) => (
-          <button
-            key={c.slug}
-            className={activeCat === c.slug ? 'chip active' : 'chip'}
-            onClick={() => setActiveCat(c.slug)}
-          >
-            {c.name}
-          </button>
-        ))}
-      </div>
-
-      <div className="chips">
-        {[
-          ['all', 'All Languages'],
-          ['hindi', 'Hindi Dubbed'],
-          ['english dubbed', 'English Dubbed'],
-          ['subtitle', 'Subtitle Only'],
-        ].map(([value, label]) => (
-          <button
-            key={value}
-            className={activeLang === value ? 'chip chip-sm active' : 'chip chip-sm'}
-            onClick={() => setActiveLang(value)}
-          >
-            {label}
-          </button>
-        ))}
-      </div>
+      <ChipRow options={catOptions} value={activeCat} onChange={setActiveCat} />
+      <ChipRow
+        options={langOptions}
+        value={activeLang}
+        onChange={setActiveLang}
+        small
+      />
 
       {filtered.length === 0 ? (
         <p className="empty">No dramas found for “{query}”. Try another name or category.</p>

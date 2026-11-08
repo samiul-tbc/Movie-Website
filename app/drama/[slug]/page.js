@@ -3,9 +3,9 @@ import { notFound } from 'next/navigation';
 import { dramas, getDrama, getDramasByCategory, cardTitle } from '../../../lib/dramas';
 import DramaCard, { portraitUrl, formatViews } from '../../../components/DramaCard';
 import RowScroller from '../../../components/RowScroller';
+import EpisodeSwitcher from '../../../components/EpisodeSwitcher';
 import {
   IconPlay,
-  IconDownload,
   IconStar,
   IconClock,
   IconEye,
@@ -40,41 +40,6 @@ function backdropUrl(drama) {
 function yearOf(drama) {
   const parts = String(drama.releaseDate).trim().split(' ');
   return parts[parts.length - 1];
-}
-
-function EpisodeSection({ drama, quality }) {
-  const is720 = quality === '720';
-  return (
-    <section className="section-block">
-      <div className="ep-quality-head">
-        <span className={is720 ? 'ep-quality-badge' : 'ep-quality-badge fullhd'}>
-          {is720 ? '720p HD' : '1080p Full HD'}
-        </span>
-        <span className="detail-sub">
-          {drama.episodes.length} episode{drama.episodes.length === 1 ? '' : 's'} available
-        </span>
-      </div>
-      <div className="ep-grid">
-        {drama.episodes.map((ep) => (
-          <div className="ep-card" key={`${quality}-${ep.number}`}>
-            <span className="ep-pill">EP {ep.number}</span>
-            <div className="ep-links">
-              <a className="btn" href={is720 ? ep.watch720 : ep.watch1080}>
-                <IconPlay size={13} /> Watch
-              </a>
-              <a className="btn alt" href={is720 ? ep.download720 : ep.download1080}>
-                <IconDownload size={13} /> Download
-              </a>
-            </div>
-          </div>
-        ))}
-      </div>
-      <p className="ep-note">
-        Links are placeholders in this demo — replace them in <code>lib/dramas.js</code>{' '}
-        with links for content you have the rights to share.
-      </p>
-    </section>
-  );
 }
 
 export default function DramaPage({ params }) {
@@ -172,8 +137,7 @@ export default function DramaPage({ params }) {
         </section>
 
         <div id="episodes">
-          <EpisodeSection drama={drama} quality="720" />
-          <EpisodeSection drama={drama} quality="1080" />
+          <EpisodeSwitcher episodes={drama.episodes} />
         </div>
 
         <section className="section-block">

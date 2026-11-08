@@ -2,7 +2,7 @@ import Link from 'next/link';
 import './globals.css';
 import TelegramPopup from '../components/TelegramPopup';
 import BottomNav from '../components/BottomNav';
-import { IconSearch, IconSend } from '../components/icons';
+import { IconSearch, IconSend, IconArrowRight } from '../components/icons';
 
 export const metadata = {
   title: {
@@ -38,17 +38,36 @@ export default function RootLayout({ children }) {
 
         <main className="main">{children}</main>
 
-        <section className="join-banner">
-          <h2>Join our Telegram Channel</h2>
-          <p>New episode updates are announced on Telegram first.</p>
-          <a
-            href="https://t.me/Rdx_kdrama_hindi"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-telegram"
-          >
-            <IconSend size={18} /> Join on Telegram
-          </a>
+        <section className="tg-cta" aria-label="Join our Telegram channel">
+          <span className="tg-cta-watermark" aria-hidden="true">
+            <IconSend size={320} />
+          </span>
+          <div className="tg-cta-inner">
+            <div className="tg-cta-main">
+              <span className="tg-cta-logo" aria-hidden="true">
+                <IconSend size={32} />
+              </span>
+              <div className="tg-cta-text">
+                <h2>Get Episodes First on Telegram</h2>
+                <p>
+                  New episodes and dramas are announced on our Telegram channel
+                  before anywhere else.
+                </p>
+                <span className="tg-cta-handle">
+                  <IconSend size={13} /> @Rdx_kdrama_hindi
+                </span>
+              </div>
+            </div>
+            <a
+              href="https://t.me/Rdx_kdrama_hindi"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="tg-cta-btn"
+            >
+              <IconSend size={18} /> Join Channel{' '}
+              <IconArrowRight size={17} className="tg-cta-btn-arrow" />
+            </a>
+          </div>
         </section>
 
         <footer className="footer">

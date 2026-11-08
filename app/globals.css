@@ -442,14 +442,11 @@ select:focus-visible, textarea:focus-visible {
   -webkit-backdrop-filter: blur(14px) saturate(160%);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07), 0 10px 26px rgba(0, 0, 0, 0.28);
 }
-/* Shared sliding-pill mechanics (bottom nav, filter chips, quality switch) */
+/* Shared sliding-pill mechanics (bottom nav, filter chips, quality switch).
+   The transition is NOT set here — the useLiquidPill hook drives it inline
+   so it can run the two-phase fluid-lens timing (stretch, then spring). */
 .chip-pill, .bn-pill, .ep-switch-pill {
   position: absolute; left: 0; top: 0; z-index: 0; pointer-events: none;
-  transition:
-    transform .55s cubic-bezier(.22, 1.36, .36, 1),
-    width .55s cubic-bezier(.22, 1.36, .36, 1),
-    height .55s cubic-bezier(.22, 1.36, .36, 1),
-    opacity .25s ease;
 }
 .chip-pill-inner, .bn-pill-inner, .ep-switch-pill-inner {
   position: absolute; inset: 0; border-radius: 999px; display: block;
@@ -459,16 +456,9 @@ select:focus-visible, textarea:focus-visible {
     inset 0 -2px 6px rgba(20, 26, 8, 0.18),
     0 8px 22px rgba(163, 230, 53, 0.35);
 }
-.chip-pill.moving .chip-pill-inner,
-.bn-pill.moving .bn-pill-inner,
-.ep-switch-pill.moving .ep-switch-pill-inner {
-  animation: liquid-stretch .58s cubic-bezier(.22, 1, .36, 1);
-}
-@keyframes liquid-stretch {
-  0% { transform: scaleX(1); }
-  35% { transform: scaleX(1.12); }
-  100% { transform: scaleX(1); }
-}
+/* The old inner scaleX "stretch" keyframe was removed: the fluid-lens
+   stretch now happens on the pill's real box (union rect, see useLiquid),
+   exactly like Hub Cart — an extra inner scale would double-stretch. */
 .chip {
   position: relative; z-index: 1;
   border: 1px solid transparent; background: transparent; color: var(--muted);

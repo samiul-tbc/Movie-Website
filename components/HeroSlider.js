@@ -3,6 +3,14 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { portraitUrl } from './DramaCard';
+import {
+  IconPlay,
+  IconStar,
+  IconInfo,
+  IconSparkles,
+  IconChevronLeft,
+  IconChevronRight,
+} from './icons';
 
 function backdropUrl(drama) {
   return drama.poster.replace('/640/360', '/1280/720');
@@ -56,7 +64,7 @@ export default function HeroSlider({ items }) {
           </div>
           <div className="hero-content">
             <div className="hero-badges hero-anim">
-              <span className="hbadge lime">★ Featured</span>
+              <span className="hbadge lime"><IconSparkles size={13} /> Featured</span>
               <span className="hbadge">{d.quality}</span>
               <span className="hbadge blue">{d.languages}</span>
               <span className="hbadge">
@@ -65,7 +73,7 @@ export default function HeroSlider({ items }) {
             </div>
             <h2 className="hero-title hero-anim d1">{d.title}</h2>
             <div className="hero-meta hero-anim d2">
-              <span className="star">⭐ {d.rating?.toFixed(1)}</span>
+              <span className="star"><IconStar size={15} /> {d.rating?.toFixed(1)}</span>
               <span>{yearOf(d)}</span>
               <span className="dot-sep">•</span>
               <span>{d.type}</span>
@@ -79,10 +87,10 @@ export default function HeroSlider({ items }) {
             <p className="hero-story hero-anim d3">{d.storyline}</p>
             <div className="hero-actions hero-anim d4">
               <Link href={`/drama/${d.slug}`} className="btn-watch">
-                ▶ Watch Now
+                <IconPlay size={17} /> Watch Now
               </Link>
               <Link href={`/drama/${d.slug}`} className="btn-info">
-                ⓘ Details
+                <IconInfo size={18} /> Details
               </Link>
             </div>
           </div>
@@ -97,7 +105,7 @@ export default function HeroSlider({ items }) {
             aria-label="Previous featured"
             onClick={() => go(index - 1)}
           >
-            ‹
+            <IconChevronLeft size={22} />
           </button>
           <button
             type="button"
@@ -105,7 +113,7 @@ export default function HeroSlider({ items }) {
             aria-label="Next featured"
             onClick={() => go(index + 1)}
           >
-            ›
+            <IconChevronRight size={22} />
           </button>
           <div className="hero-dots">
             {items.map((d, i) => (

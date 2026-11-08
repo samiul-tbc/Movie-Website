@@ -2,6 +2,7 @@ import Link from 'next/link';
 import './globals.css';
 import TelegramPopup from '../components/TelegramPopup';
 import BottomNav from '../components/BottomNav';
+import { IconSearch, IconSend } from '../components/icons';
 
 export const metadata = {
   title: {
@@ -30,7 +31,7 @@ export default function RootLayout({ children }) {
               <Link href="/category/movies">Movies</Link>
             </nav>
             <Link href="/search" className="search-link" aria-label="Search">
-              🔍 Search
+              <IconSearch size={16} /> Search
             </Link>
           </div>
         </header>
@@ -46,7 +47,7 @@ export default function RootLayout({ children }) {
             rel="noopener noreferrer"
             className="btn-telegram"
           >
-            ✈ Join on Telegram
+            <IconSend size={18} /> Join on Telegram
           </a>
         </section>
 

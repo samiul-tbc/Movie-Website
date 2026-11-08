@@ -3,6 +3,7 @@ import HeroSlider from '../components/HeroSlider';
 import RowScroller from '../components/RowScroller';
 import DramaCard from '../components/DramaCard';
 import { dramas, categories, getDramasByCategory } from '../lib/dramas';
+import { IconFlame, IconSparkles, IconLayers } from '../components/icons';
 
 export default function HomePage() {
   const featured = dramas.filter((d) => d.featured);
@@ -33,7 +34,10 @@ export default function HomePage() {
       </div>
 
       <div className="shell">
-        <RowScroller title="🔥 Trending Now" href="/search">
+        <RowScroller
+          title={<><IconFlame size={21} className="row-title-icon" /> Trending Now</>}
+          href="/search"
+        >
           {trending.map((d, i) => (
             <div className="trend-item" key={d.slug}>
               <span className="trend-rank" aria-hidden="true">
@@ -44,7 +48,10 @@ export default function HomePage() {
           ))}
         </RowScroller>
 
-        <RowScroller title="🆕 Latest Added" href="/search">
+        <RowScroller
+          title={<><IconSparkles size={21} className="row-title-icon" /> Latest Added</>}
+          href="/search"
+        >
           {latest.map((d) => (
             <DramaCard key={d.slug} drama={d} />
           ))}
@@ -70,7 +77,7 @@ export default function HomePage() {
 
         <section className="row-section">
           <div className="row-head">
-            <h2 className="row-title">🎭 Browse by Genre</h2>
+            <h2 className="row-title"><IconLayers size={21} className="row-title-icon" /> Browse by Genre</h2>
           </div>
           <div className="genre-wrap">
             {genres.map((g) => (

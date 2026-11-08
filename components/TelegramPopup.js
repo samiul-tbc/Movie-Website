@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { IconX, IconCheck, IconBolt, IconClapper } from './icons';
 
 const TELEGRAM_URL = 'https://t.me/Rdx_kdrama_hindi';
 
@@ -58,7 +59,7 @@ export default function TelegramPopup() {
           onClick={close}
           aria-label="Close popup"
         >
-          ✕
+          <IconX size={15} />
         </button>
 
         <div className="tg-popup-logo" aria-hidden="true">
@@ -68,7 +69,7 @@ export default function TelegramPopup() {
           </span>
         </div>
 
-        <div className="tg-popup-badge">✓ OFFICIAL CHANNEL</div>
+        <div className="tg-popup-badge"><IconCheck size={12} /> OFFICIAL CHANNEL</div>
 
         <h2 id="tg-popup-title" className="tg-popup-title">
           Join Our <span className="tg-popup-title-accent">Telegram</span> Channel
@@ -82,9 +83,9 @@ export default function TelegramPopup() {
         </p>
 
         <div className="tg-popup-features" aria-hidden="true">
-          <span>⚡ Instant updates</span>
-          <span>🎬 New episodes first</span>
-          <span>🆓 100% Free</span>
+          <span><IconBolt size={13} /> Instant updates</span>
+          <span><IconClapper size={13} /> New episodes first</span>
+          <span><IconCheck size={13} /> 100% Free</span>
         </div>
 
         <div className="tg-popup-actions">

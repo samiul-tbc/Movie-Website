@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import { IconCheck } from './icons';
 
 const slugify = (s) =>
   s.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
@@ -110,7 +111,7 @@ export default function AdminForm() {
       </h2>
       <textarea className="admin-out" readOnly value={snippet} />
       <button className="btn" onClick={copy} style={{ marginTop: 10, cursor: 'pointer', border: 'none' }}>
-        {copied ? 'Copied ✓' : 'Copy snippet'}
+        {copied ? <><IconCheck size={14} /> Copied</> : 'Copy snippet'}
       </button>
       <p className="card-meta" style={{ marginTop: 12 }}>
         After pasting, also update the episode watch/download links for that drama

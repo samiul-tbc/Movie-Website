@@ -3,6 +3,17 @@ import { notFound } from 'next/navigation';
 import { dramas, getDrama, getDramasByCategory, cardTitle } from '../../../lib/dramas';
 import DramaCard, { portraitUrl, formatViews } from '../../../components/DramaCard';
 import RowScroller from '../../../components/RowScroller';
+import {
+  IconPlay,
+  IconDownload,
+  IconStar,
+  IconClock,
+  IconEye,
+  IconSend,
+  IconClapper,
+  IconInfo,
+  IconMonitor,
+} from '../../../components/icons';
 
 export function generateStaticParams() {
   return dramas.map((d) => ({ slug: d.slug }));
@@ -49,10 +60,10 @@ function EpisodeSection({ drama, quality }) {
             <span className="ep-pill">EP {ep.number}</span>
             <div className="ep-links">
               <a className="btn" href={is720 ? ep.watch720 : ep.watch1080}>
-                ▶ Watch
+                <IconPlay size={13} /> Watch
               </a>
               <a className="btn alt" href={is720 ? ep.download720 : ep.download1080}>
-                ⬇ Download
+                <IconDownload size={13} /> Download
               </a>
             </div>
           </div>
@@ -109,13 +120,13 @@ export default function DramaPage({ params }) {
             <h1 className="detail-title">{drama.title}</h1>
             <p className="detail-sub">{cardTitle(drama)}</p>
             <div className="detail-meta">
-              <span className="star">⭐ {drama.rating?.toFixed(1)}</span>
+              <span className="star"><IconStar size={15} /> {drama.rating?.toFixed(1)}</span>
               <span>{yearOf(drama)}</span>
-              <span>🕐 {drama.runningTime}</span>
+              <span><IconClock size={15} /> {drama.runningTime}</span>
               <span>
                 {drama.addedEpisodes}/{drama.totalEpisodes} Episodes
               </span>
-              <span>👁 {formatViews(drama.views)} views</span>
+              <span><IconEye size={15} /> {formatViews(drama.views)} views</span>
               <span>{drama.country}</span>
             </div>
             <div className="genre-chips">
@@ -127,7 +138,7 @@ export default function DramaPage({ params }) {
             </div>
             <div className="detail-actions">
               <a href="#episodes" className="btn-watch">
-                ▶ Watch Now
+                <IconPlay size={17} /> Watch Now
               </a>
               <a
                 href="https://t.me/Rdx_kdrama_hindi"
@@ -135,7 +146,7 @@ export default function DramaPage({ params }) {
                 rel="noopener noreferrer"
                 className="btn-info"
               >
-                ✈ Join Telegram
+                <IconSend size={17} /> Join Telegram
               </a>
             </div>
           </div>
@@ -144,12 +155,12 @@ export default function DramaPage({ params }) {
 
       <div className="shell">
         <section className="glass-panel">
-          <h2 className="section-title">📖 Storyline</h2>
+          <h2 className="section-title"><IconClapper size={21} className="section-title-icon" /> Storyline</h2>
           <p className="storyline">{drama.storyline}</p>
         </section>
 
         <section className="section-block">
-          <h2 className="section-title">ℹ️ Information</h2>
+          <h2 className="section-title"><IconInfo size={21} className="section-title-icon" /> Information</h2>
           <dl className="spec-grid">
             {info.map(([label, value, hl]) => (
               <div className="spec-item" key={label}>
@@ -166,7 +177,7 @@ export default function DramaPage({ params }) {
         </div>
 
         <section className="section-block">
-          <h2 className="section-title">🖼️ Screenshots</h2>
+          <h2 className="section-title"><IconMonitor size={21} className="section-title-icon" /> Screenshots</h2>
           <div className="shots">
             {drama.screenshots.map((src, i) => (
               <figure key={src}>

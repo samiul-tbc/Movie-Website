@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { cardTitle } from '../lib/dramas';
+import { IconPlay, IconStar, IconEye } from './icons';
 
 export function portraitUrl(drama) {
   return drama.poster.replace('/640/360', '/500/750');
@@ -30,18 +31,18 @@ export default function DramaCard({ drama }) {
         <span className="badge-ep">{epBadge}</span>
         <span className="badge-lang">{drama.languages}</span>
         <div className="card-shade" />
-        <span className="card-play" aria-hidden="true">▶</span>
+        <span className="card-play" aria-hidden="true"><IconPlay size={21} /></span>
         <div className="card-poster-foot">
           <span className="foot-eps">
             {drama.totalEpisodes} {drama.totalEpisodes === 1 ? 'Movie' : 'Eps'}
           </span>
-          <span className="foot-views">👁 {formatViews(drama.views)}</span>
+          <span className="foot-views"><IconEye size={13} /> {formatViews(drama.views)}</span>
         </div>
       </div>
       <div className="card-body">
         <h3>{cardTitle(drama)}</h3>
         <p className="card-meta">
-          <span className="card-rating">⭐ {drama.rating?.toFixed(1)}</span>
+          <span className="card-rating"><IconStar size={13} /> {drama.rating?.toFixed(1)}</span>
           {'  ·  '}
           {drama.genres.join(', ')}
         </p>

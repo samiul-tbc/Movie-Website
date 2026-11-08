@@ -2,6 +2,7 @@
 
 import { useRef } from 'react';
 import Link from 'next/link';
+import { IconChevronLeft, IconChevronRight, IconArrowRight } from './icons';
 
 export default function RowScroller({ title, href, children }) {
   const viewRef = useRef(null);
@@ -18,15 +19,15 @@ export default function RowScroller({ title, href, children }) {
         <h2 className="row-title">{title}</h2>
         {href && (
           <Link href={href} className="row-link">
-            See All ›
+            See All <IconArrowRight size={14} />
           </Link>
         )}
         <div className="row-btns">
           <button type="button" className="row-btn" aria-label="Scroll left" onClick={() => scroll(-1)}>
-            ‹
+            <IconChevronLeft size={18} />
           </button>
           <button type="button" className="row-btn" aria-label="Scroll right" onClick={() => scroll(1)}>
-            ›
+            <IconChevronRight size={18} />
           </button>
         </div>
       </div>

@@ -5,6 +5,6 @@ export default function robots() {
       allow: '/',
       disallow: ['/admin', '/api/'],
     },
-    sitemap: 'https://dramahub.vercel.app/sitemap.xml',
+    sitemap: 'https://hubcart-movie.vercel.app/sitemap.xml',
   };
 }

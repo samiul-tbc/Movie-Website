@@ -1,8 +1,7 @@
 // Static sitemap: home, search, categories + one entry per drama.
-// Change SITE_URL once a real domain is connected.
 import { dramas, categories } from '../lib/dramas';
 
-const SITE_URL = 'https://dramahub.vercel.app';
+const SITE_URL = 'https://hubcart-movie.vercel.app';
 
 export default function sitemap() {
   const now = new Date();

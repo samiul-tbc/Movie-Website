@@ -1,4 +1,4 @@
-# DramaHub (working title — rename later)
+# HubCart Movie
 
 A drama catalog website modeled on the classic K-drama download-site
 structure: poster grid homepage, category pages, and a per-drama page with an
@@ -52,11 +52,15 @@ helper in `lib/dramas.js`). To give a drama custom per-episode links, set its
 When new episodes are released, just raise `addedEpisodes` — the homepage
 card, info box and episode lists update automatically.
 
-## Rename the site
+## Site name & links
 
-Search and replace `DramaHub` in `app/layout.js`, `app/sitemap.js` and
-`app/robots.js` (also update the `SITE_URL` values there once you have a
-domain), then update the Telegram link in `app/layout.js`.
+The site brand is **HubCart Movie** (`app/layout.js` — header, metadata and
+footer). The production URL is https://hubcart-movie.vercel.app — it is set
+as `SITE_URL` in `app/sitemap.js` and in `app/robots.js`.
+
+The Telegram channel is https://t.me/Rdx_kdrama_hindi — it is linked from the
+join banner in `app/layout.js` and from the Telegram popup
+(`components/TelegramPopup.js`), which appears on every full page load.
 
 ## Deploy to Vercel
 

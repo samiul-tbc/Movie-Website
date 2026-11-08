@@ -7,8 +7,10 @@ export const metadata = {
 
 export default function AdminPage() {
   return (
-    <section>
-      <h1 className="page-title">Admin (v1)</h1>
+    <section className="shell">
+      <div className="page-head">
+        <h1 className="page-title">Admin (v1)</h1>
+      </div>
       <p className="page-sub">
         Phase 1 has no database or login yet. Dramas live in{' '}
         <code>lib/dramas.js</code> — use the form below to generate a ready-to-paste

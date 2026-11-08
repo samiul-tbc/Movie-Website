@@ -3,8 +3,8 @@
 import { useMemo, useState } from 'react';
 import DramaCard from './DramaCard';
 
-export default function SearchGrid({ dramas, categories }) {
-  const [query, setQuery] = useState('');
+export default function SearchGrid({ dramas, categories, initialQuery = '' }) {
+  const [query, setQuery] = useState(initialQuery);
   const [activeCat, setActiveCat] = useState('all');
   const [activeLang, setActiveLang] = useState('all');
 
@@ -18,6 +18,8 @@ export default function SearchGrid({ dramas, categories }) {
         d.title.toLowerCase().includes(q) ||
         d.type.toLowerCase().includes(q) ||
         d.languages.toLowerCase().includes(q) ||
+        (d.subtitle || '').toLowerCase().includes(q) ||
+        (d.storyline || '').toLowerCase().includes(q) ||
         d.genres.some((g) => g.toLowerCase().includes(q))
       );
     });

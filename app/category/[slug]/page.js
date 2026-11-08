@@ -22,9 +22,19 @@ export default function CategoryPage({ params }) {
   const list = getDramasByCategory(params.slug);
 
   return (
-    <section>
-      <h1 className="page-title">{cat.name}</h1>
-      <p className="page-sub">{list.length} title{list.length === 1 ? '' : 's'} available</p>
+    <div className="shell">
+      <div className="page-head">
+        <h1 className="page-title">
+          <span className="grad">{cat.name}</span>
+          <span className="count-chip">
+            {list.length} title{list.length === 1 ? '' : 's'}
+          </span>
+        </h1>
+        <p className="page-sub">
+          {cat.name} in Hindi Dubbed &amp; more — episode-wise 720p HD and 1080p
+          Full HD updates.
+        </p>
+      </div>
       {list.length === 0 ? (
         <p className="empty">No dramas in this category yet.</p>
       ) : (
@@ -34,6 +44,6 @@ export default function CategoryPage({ params }) {
           ))}
         </div>
       )}
-    </section>
+    </div>
   );
 }
